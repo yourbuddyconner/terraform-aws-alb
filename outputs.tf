@@ -40,15 +40,15 @@ output "load_balancer_zone_id" {
 
 output "target_group_arns" {
   description = "ARNs of the target groups. Useful for passing to your Auto Scaling group."
-  value       = "${slice(concat(aws_lb_target_group.main.*.arn, aws_lb_target_group.main_no_logs.*.arn), 0, var.target_groups_count)}"
+  value       = "${concat(aws_lb_target_group.main.*.arn, aws_lb_target_group.main_no_logs.*.arn)}"
 }
 
 output "target_group_arn_suffixes" {
   description = "ARN suffixes of our target groups - can be used with CloudWatch."
-  value       = "${slice(concat(aws_lb_target_group.main.*.arn_suffix, aws_lb_target_group.main_no_logs.*.arn_suffix), 0, var.target_groups_count)}"
+  value       = "${concat(aws_lb_target_group.main.*.arn_suffix, aws_lb_target_group.main_no_logs.*.arn_suffix)}"
 }
 
 output "target_group_names" {
   description = "Name of the target group. Useful for passing to your CodeDeploy Deployment Group."
-  value       = "${slice(concat(aws_lb_target_group.main.*.name, aws_lb_target_group.main_no_logs.*.name), 0, var.target_groups_count)}"
+  value       = "${concat(aws_lb_target_group.main.*.name, aws_lb_target_group.main_no_logs.*.name)}"
 }
